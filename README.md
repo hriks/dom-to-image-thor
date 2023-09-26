@@ -8,7 +8,7 @@
 
 ## Breaking Change Notice
 
-The 3.x release branch included some breaking changes in the vary infrequently used
+The 3.x release branch included some breaking changes in the very infrequently used
 ability to configure some utility methods used in this internal processing of
 dom-to-image-more. As browsers have matured, many of the hacks we're accumulated over the
 years are not needed, or better ways have been found to handle some edge-cases. With the
