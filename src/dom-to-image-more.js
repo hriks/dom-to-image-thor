@@ -20,6 +20,8 @@
         httpTimeout: 30000,
         // Style computation cache tag rules (options are strict, relaxed)
         styleCaching: 'strict',
+        // Default cors config is to request the image address directly
+        corsImg: undefined,
     };
 
     const domtoimage = {
@@ -76,6 +78,11 @@
      * @param {Boolean} options.cacheBust - set to true to cache bust by appending the time to the request url
      * @param {String} options.styleCaching - set to 'strict', 'relaxed' to select style caching rules
      * @param {Boolean} options.copyDefaultStyles - set to false to disable use of default styles of elements
+     * @param {Object} options.corsImg - When the image is restricted by the server from cross-domain requests, the proxy address is passed in to get the image
+     *         - @param {String} url - eg: https://cors-anywhere.herokuapp.com/
+     *         - @param {Enumerator} method - get, post
+     *         - @param {Object} headers - eg: { "Content-Type", "application/json;charset=UTF-8" }
+     *         - @param {Object} data - post payload
      * @return {Promise} - A promise that is fulfilled with a SVG image data URL
      * */
     function toSvg(node, options) {
@@ -257,6 +264,12 @@
             domtoimage.impl.options.cacheBust = defaultOptions.cacheBust;
         } else {
             domtoimage.impl.options.cacheBust = options.cacheBust;
+        }
+
+        if (typeof(options.corsImg) === 'undefined') {
+            domtoimage.impl.options.corsImg = defaultOptions.corsImg;
+        } else {
+            domtoimage.impl.options.corsImg = options.corsImg;
         }
 
         if (typeof options.useCredentials === 'undefined') {
@@ -790,8 +803,38 @@
                     if (domtoimage.impl.options.useCredentials) {
                         request.withCredentials = true;
                     }
-                    request.open('GET', url, true);
-                    request.send();
+
+                    if (domtoimage.impl.options.corsImg
+                        && url.indexOf('http') === 0 
+                        && url.indexOf(window.location.origin) === -1) {
+                        const method = (domtoimage.impl.options.corsImg.method || 'GET').toUpperCase() === 'POST' 
+                            ? 'POST' 
+                            : 'GET';
+
+                        request.open(method, (domtoimage.impl.options.corsImg.url || '').replace('#{cors}', url), true);
+    
+                        let isJson = false;
+                        const headers = domtoimage.impl.options.corsImg.headers || {};
+                        Object.keys(headers).forEach(function (key) {
+                            if (headers[key].indexOf('application/json') !== -1) {
+                                isJson = true;
+                            }
+                            request.setRequestHeader(key, headers[key]);
+                        });
+
+                        const corsData = handleJson(domtoimage.impl.options.corsImg.data || '');
+    
+                        Object.keys(corsData).forEach(function (key) {
+                            if (typeof(corsData[key]) === 'string') {
+                                corsData[key] = corsData[key].replace('#{cors}', url);
+                            }
+                        });
+
+                        request.send(isJson ? JSON.stringify(corsData) : corsData);
+                    } else {
+                        request.open('GET', url, true);
+                        request.send();
+                    }
 
                     let placeholder;
                     if (domtoimage.impl.options.imagePlaceholder) {
@@ -806,7 +849,7 @@
                             return;
                         }
 
-                        if (request.status !== 200) {
+                        if (request.status >= 300) {
                             if (placeholder) {
                                 resolve(placeholder);
                             } else {
@@ -832,6 +875,15 @@
                             fail(
                                 `timeout of ${httpTimeout}ms occured while fetching resource: ${url}`
                             );
+                        }
+                    }
+
+                    function handleJson(data) {
+                        try {
+                            return JSON.parse(JSON.stringify(data));
+                        } catch (e) {
+                            fail('corsImg.data is missing or invalid');
+                            return;
                         }
                     }
 

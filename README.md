@@ -195,17 +195,20 @@ Are you facing a [CORS policy](https://developer.mozilla.org/en-US/docs/Web/HTTP
 issue in your app? Don't worry, there are alternative solutions to this problem that you
 can explore. Here are some options to consider:
 
-1. **Use third-party services like [allOrigins](https://allorigins.win/).** With this
+1. **Use the option.corsImg support by passing images** With this option, you can setup
+   a proxy service that will process the requests in a safe CORS context.
+
+2. **Use third-party services like [allOrigins](https://allorigins.win/).** With this
    service, you can fetch the source code or an image in base64 format from any website.
    However, this method can be a bit slow.
 
-1. **Set up your own API service.** Compared to third-party services like
+3. **Set up your own API service.** Compared to third-party services like
    [allOrigins](https://allorigins.win/), this method can be faster, but you'll need to
    convert the image URL to base64 format. You can use the
    "[image-to-base64](https://github.com/renanbastos93/image-to-base64)" package for this
    purpose.
 
-1. **Utilize
+4. **Utilize
    [server-side functions](https://nextjs.org/docs/basic-features/data-fetching/get-server-side-props)
    features of frameworks like [Next.js](https://nextjs.org/).** This is the easiest and
    most convenient method, where you can directly fetch a URL source within
@@ -327,7 +330,7 @@ Klimas (fixes), Edgardo Di Gesto (fixes), 樊冬 Fan Dong (fixes), Shrijan Tripa
 SNDST00M (optimize), Joseph White (performance CSS), Phani Rithvij (test), David
 DOLCIMASCOLO (packaging), Zee (ZM) @zm-cttae (many major updates), Joshua Walsh
 @JoshuaWalsh (Firefox issues), Emre Coban @emrecoban (documentation), Nate Stuyvesant
-@nstuyvesant (fixes)
+@nstuyvesant (fixes), King Wang @eachmawzw (CORS image proxy)
 
 ## License
 
