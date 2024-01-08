@@ -95,13 +95,7 @@
             .then(function (clonee) {
                 return cloneNode(clonee, options, null, ownerWindow);
             })
-            .then(function(n) {
-                if (options.avoidFontLoad) {
-                    return n;
-                }
-                return embedFonts(n);
-            })
-//            .then(embedFonts)
+            .then(embedFonts)
             .then(inlineImages)
             .then(applyOptions)
             .then(makeSvgDataUri)
@@ -135,7 +129,7 @@
         }
 
         function clearCache(result) {
-            domtoimage.impl.urlCache = [];
+//            domtoimage.impl.urlCache = [];
             removeSandbox();
             return result;
         }
