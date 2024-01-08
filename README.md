@@ -1,16 +1,16 @@
 # DOM to Image
 
-[![Version](https://img.shields.io/npm/v/dom-to-image-more.svg?style=flat-square)](https://npmjs.com/package/dom-to-image-more)
-[![Bundle Size](https://img.shields.io/bundlephobia/minzip/dom-to-image-more?style=flat-square)](https://bundlephobia.com/result?p=dom-to-image-more)
-[![Open Issues](https://img.shields.io/github/issues/1904labs/dom-to-image-more?style=flat-square)](https://github.com/1904labs/dom-to-image-more/issues)
-[![GitHub Repo stars](https://img.shields.io/github/stars/1904labs/dom-to-image-more?style=social)](https://github.com/1904labs/dom-to-image-more)
+[![Version](https://img.shields.io/npm/v/dom-to-image-thor.svg?style=flat-square)](https://npmjs.com/package/dom-to-image-thor)
+[![Bundle Size](https://img.shields.io/bundlephobia/minzip/dom-to-image-thor?style=flat-square)](https://bundlephobia.com/result?p=dom-to-image-thor)
+[![Open Issues](https://img.shields.io/github/issues/1904labs/dom-to-image-thor?style=flat-square)](https://github.com/1904labs/dom-to-image-thor/issues)
+[![GitHub Repo stars](https://img.shields.io/github/stars/1904labs/dom-to-image-thor?style=social)](https://github.com/1904labs/dom-to-image-thor)
 [![Twitter](https://img.shields.io/twitter/follow/idisposable.svg?style=social&label=Follow)](https://www.twitter.com/idisposable)
 
 ## Breaking Change Notice
 
 The 3.x release branch included some breaking changes in the very infrequently used
 ability to configure some utility methods used in this internal processing of
-dom-to-image-more. As browsers have matured, many of the hacks we're accumulated over the
+dom-to-image-thor. As browsers have matured, many of the hacks we're accumulated over the
 years are not needed, or better ways have been found to handle some edge-cases. With the
 help of folks like @meche-gh, in #99 we're stripping out the following members:
 
@@ -26,7 +26,7 @@ The 3.x release branch should also fix more node compatibility and `iframe` issu
 
 ## What is it
 
-**dom-to-image-more** is a library which can turn arbitrary DOM node, including same
+**dom-to-image-thor** is a library which can turn arbitrary DOM node, including same
 origin and blob iframes, into a vector (SVG) or raster (PNG or JPEG) image, written in
 JavaScript.
 
@@ -45,15 +45,15 @@ Moved to [1904labs organization](https://github.com/1904labs/) from my repositor
 
 ### NPM
 
-`npm install dom-to-image-more`
+`npm install dom-to-image-thor`
 
 Then load
 
 ```javascript
 /* in ES 6 */
-import domtoimage from 'dom-to-image-more';
+import domtoimage from 'dom-to-image-thor';
 /* in ES 5 */
-var domtoimage = require('dom-to-image-more');
+var domtoimage = require('dom-to-image-thor');
 ```
 
 ## Usage
@@ -304,11 +304,11 @@ taken:
 1. Use original `dom-to-image` type definition
    `npm install @types/dom-to-image --save-dev`
 
-1. Create dom-to-image-more type definition (`dom-to-image-more.d.ts`)
+1. Create dom-to-image-thor type definition (`dom-to-image-thor.d.ts`)
 
     ```javascript
-    declare module 'dom-to-image-more' {
-     import domToImage = require('dom-to-image-more');
+    declare module 'dom-to-image-thor' {
+     import domToImage = require('dom-to-image-thor');
      export = domToImage;
     }
     ```

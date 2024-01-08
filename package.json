@@ -1,8 +1,8 @@
 {
-    "name": "dom-to-image-more",
-    "version": "3.2.0",
+    "name": "dom-to-image-thor",
+    "version": "3.2.1",
     "description": "Generates an image from a DOM node using HTML5 canvas and SVG",
-    "main": "dist/dom-to-image-more.min.js",
+    "main": "dist/dom-to-image-thor.min.js",
     "devDependencies": {
         "chai": "^4.3.10",
         "eslint": "^8.50.0",
@@ -35,7 +35,7 @@
         "rc-version": "npm version $(semver $npm_package_version -i prerelease --preid rc)",
         "final-release": "npm version $(semver $npm_package_version -i)"
     },
-    "repository": "github:1904labs/dom-to-image-more",
+    "repository": "github:hriks/dom-to-image-thor",
     "keywords": [
         "dom",
         "image",
@@ -45,7 +45,7 @@
         "canvas",
         "svg"
     ],
-    "author": "Marc Brooks <idisposable@gmail.com> (https://about.me/IDisposable)",
+    "author": "hriks <hriksss@gmail.com> (https://hriks.com)",
     "contributors": [
         "Anatolii Saienko <anatoly.sayenko@gmail.com>",
         "Marc Brooks <idisposable@gmail.com>",
@@ -62,11 +62,12 @@
         "Joshua Walsh @JoshuaWalsh",
         "Emre Coban @emrecoban",
         "Nate Stuyvesant @nstuyvesant",
-        "King Wang @eachmawzw"
+        "King Wang @eachmawzw",
+        "Zady Gupta @hriks"
     ],
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/1904labs/dom-to-image-more/issues"
+        "url": "https://github.com/hriks/dom-to-image-thor/issues"
     },
-    "homepage": "https://github.com/1904labs/dom-to-image-more#readme"
+    "homepage": "https://github.com/hriks/dom-to-image-thor#readme"
 }

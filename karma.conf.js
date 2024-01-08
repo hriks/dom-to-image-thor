@@ -23,8 +23,8 @@ module.exports = function (config) {
 
             'test-lib/tesseract-4.0.2.min.js',
 
-            'src/dom-to-image-more.js',
-            'spec/dom-to-image-more.spec.js',
+            'src/dom-to-image-thor.js',
+            'spec/dom-to-image-thor.spec.js',
         ],
 
         exclude: [],
