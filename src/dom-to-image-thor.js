@@ -95,7 +95,13 @@
             .then(function (clonee) {
                 return cloneNode(clonee, options, null, ownerWindow);
             })
-            .then(embedFonts)
+            .then(function(n) {
+                if (options.avoidFontLoad) {
+                    return n;
+                }
+                return embedFonts(n);
+            })
+//            .then(embedFonts)
             .then(inlineImages)
             .then(applyOptions)
             .then(makeSvgDataUri)

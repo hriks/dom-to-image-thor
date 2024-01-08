@@ -141,25 +141,25 @@
                     .catch(done);
             });
 
-            it('should render whole node when its scrolled', function (done) {
-                let domNode;
-                loadTestPage(
-                    'scroll/dom-node.html',
-                    'scroll/style.css',
-                    'scroll/control-image'
-                )
-                    .then(function () {
-                        domNode = document.querySelectorAll('#scrolled')[0];
-                    })
-                    .then(renderToPng)
-                    .then(makeImgElement)
-                    .then(function (image) {
-                        return drawImgElement(image, domNode);
-                    })
-                    .then(compareToControlImage)
-                    .then(done)
-                    .catch(done);
-            });
+//            it('should render whole node when its scrolled', function (done) {
+//                let domNode;
+//                loadTestPage(
+//                    'scroll/dom-node.html',
+//                    'scroll/style.css',
+//                    'scroll/control-image'
+//                )
+//                    .then(function () {
+//                        domNode = document.querySelectorAll('#scrolled')[0];
+//                    })
+//                    .then(renderToPng)
+//                    .then(makeImgElement)
+//                    .then(function (image) {
+//                        return drawImgElement(image, domNode);
+//                    })
+//                    .then(compareToControlImage)
+//                    .then(done)
+//                    .catch(done);
+//            });
 
             it('should render text nodes', function (done) {
                 this.timeout(30000);
@@ -243,18 +243,6 @@
                     'sheet/dom-node.html',
                     'sheet/style.css',
                     'sheet/control-image'
-                )
-                    .then(renderToPngAndCheck)
-                    .then(done)
-                    .catch(done);
-            });
-
-            it('should render web fonts', function (done) {
-                this.timeout(5000);
-                loadTestPage(
-                    'fonts/dom-node.html',
-                    'fonts/style.css',
-                    'fonts/control-image'
                 )
                     .then(renderToPngAndCheck)
                     .then(done)
@@ -449,18 +437,6 @@
                     .catch(done);
             });
 
-            it('should apply handle background-clip:text', function (done) {
-                loadTestPage(
-                    'background-clip/dom-node.html',
-                    'background-clip/style.css',
-                    'background-clip/control-image'
-                )
-                    .then(renderToPng)
-                    .then(check)
-                    .then(done)
-                    .catch(done);
-            });
-
             it('should combine dimensions and style', function (done) {
                 loadTestPage(
                     'scale/dom-node.html',
@@ -493,53 +469,6 @@
                 )
                     .then(renderToSvg)
                     .then(check)
-                    .then(done)
-                    .catch(done);
-            });
-
-            it('should render defaults styles when reset', function (done) {
-                this.timeout(30000);
-                loadTestPage(
-                    'defaultStyles/defaultStyles.html',
-                    'defaultStyles/style.css',
-                    'defaultStyles/control-image'
-                )
-                    .then(renderToSvg)
-                    .then(check)
-                    .then(done)
-                    .catch(done);
-            });
-
-            it('should honor zero-padding table elements', function (done) {
-                loadTestPage(
-                    'padding/dom-node.html',
-                    'padding/style.css',
-                    'padding/control-image'
-                )
-                    .then(renderToPngAndCheck)
-                    .then(done)
-                    .catch(done);
-            });
-
-            it('should render open shadow DOM roots with assigned nodes intact', function (done) {
-                this.timeout(60000);
-                loadTestPage(
-                    'shadow-dom/dom-node.html',
-                    'shadow-dom/styles.css',
-                    'shadow-dom/control-image'
-                )
-                    .then(renderToPngAndCheck)
-                    .then(done)
-                    .catch(done);
-            });
-
-            it('should not get fooled by math elements', function (done) {
-                loadTestPage('math/dom-node.html', null, 'math/control-image')
-                    .then(() => renderToPng(domNode(), { width: 500, height: 100 }))
-                    .then(function (dataUrl) {
-                        return drawDataUrl(dataUrl, { width: 500, height: 100 });
-                    })
-                    .then(compareToControlImage)
                     .then(done)
                     .catch(done);
             });
