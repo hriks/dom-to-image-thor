@@ -14,7 +14,6 @@ ability to configure some utility methods used in this internal processing of
 dom-to-image-thor. As browsers have matured, many of the hacks we're accumulated over the
 years are not needed, or better ways have been found to handle some edge-cases. With the
 help of folks like @meche-gh, in #99 we're stripping out the following members:
-
 -   `.mimes` - was the not-very-comprehensive list of mime types used to handle inlining
     things
 -   `.parseExtension` - was a method to extract the extension from a filename, used to
